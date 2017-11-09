@@ -1,0 +1,21 @@
+- Tables
+  Create Table Film (
+   title VARCHAR (70) PRIMARY KEY,
+   whenmade DATE PRIMARY KEY,
+   rating VARCHAR (4),
+   cost INTEGER,
+   length DECIMAL (3),
+   PRIMARY KEY (title, whenmade),
+  }
+
+  - NULL
+  - CHECK -predicate
+  - DEFAULT
+
+  # BLOB binary large object
+  # key: title, whenMade
+
+  DROP CONSTRAINT pkfilm
+  DROP TABLE film
+  ALTER TABLE film DROP COLUMN rating
+

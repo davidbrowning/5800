@@ -1,0 +1,2 @@
+﻿(select count (distinct "masterID") from appearances where "teamID" = 
+(select distinct "teamID" from teams where name = 'Boston Red Sox' and "G_p" > 15 ))

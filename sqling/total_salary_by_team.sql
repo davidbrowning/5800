@@ -1,0 +1,1 @@
+select s.teamID, SUM(s.salary) AS Total_Salary FROM salaries AS s GROUP BY s.teamID

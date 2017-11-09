@@ -1,0 +1,92 @@
+relational division: 
+ Ice Cream | ...
+      choc | ...
+      van  | ...
+
+
+ Likes | ...
+  fred | choc
+  fred | van
+   joe | van
+
+
+Ice Cream.flavor / Likes.flavor = fred
+
+File Organization Overview:
+ File
+  a db is stored as collection. 
+
+harddisks and performance. 
+
+seek time avg: 4 ms
+latency, avg: 2 ms
+block xfer time : 1ms
+
+Chain blocks on disk. 10 ms to seek, read 1 ms for contiguous block read. 
+
+RAID
+ Disk I/O bottleneck
+  RAM x2
+  Disk capacity 50%
+  Disk transfer rate - 10-20%
+Reliability - Mean Time Failure 
+ 1 disk 200,000 hours = 22.8 years
+ 100 disks - 2,000 hours = 88.3 years
+Mirroring - Same data on multiple disks. 
+
+Fixed Size Records: Access
+ w/in a block, how to find a record
+ fixed size: record i is at location nxi
+ E.g.
+  Film title and performer
+   i
+   1  toy story   |   Tom
+   2 
+
+Varialbe-Size Records
+ xxxxxxx | xxxxxxxxx| xxxxxxxxxx| xxxxxxxxxx| xxxxxxx| xxxxxxx
+ only use what is filled up. 
+
+Outline
+* primary file organizations
+* Big-O Costs
+
+Primary 
+ - Every relation must have one
+ - Heap: Unorganized
+  |--------------------------
+  | stick records in blocks
+  |  no particular organization
+  |
+  |
+  
+  -- insert ID = 102 : put tuple in first open block O(1)
+  -- delete ID = 100 : linear scan O(n)
+  -- update ID = 100 : linear scan O(n)
+  -- search ID = 100 :       ~"~
+ - Sequential
+  -- ordered on field(s) key
+  
+  -- insert : binary search O(log(n)) 
+  -- reorganization (make contiguous) O(n)
+  -- deletion : O(log(n))
+  -- update : O(log(n))
+  -- search : O(log(n))
+ - Hash: 
+  -- Function: 
+  -- Buckets (blocks)
+   * collision is less of a problem than normal
+  -- Internal hashing (memory) External (Disk) 
+   * with disk, block are buckets and lots of tuples can fit in blocks
+   ** when one bucket fills up, add new block to bucket. 
+  -- Dynamic/static
+
+  -- insertion : O(1) to O(n) if hash function sucks 
+  -- deletion : O(1) to O(n)
+  -- update : O(1) to O(n)
+  -- search : O(1) to O(n)
+
+
+
+
+

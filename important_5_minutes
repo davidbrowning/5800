@@ -1,0 +1,42 @@
+write constraints
+ (alter table operations)
+ (write triggers)
+optimize queries
+ describe ways you tried to optimize
+
+INDEX: small file that i store to help improve performance. Seperate from the data file. (10 - 20 % of the original relation)
+ Specifically where clause
+ Several kinds of index
+  primary, clustering, secondary, sparse vc. dense
+
+ Primary : all values clustered together on disk
+ Secondary : built on field for which relation is not defined (heap)
+ Sparse : 1 entry per block 
+ Dense : 1 index entry for every value
+
+ Ex Primary (sparse)
+ 
+  Organized by CustomerID
+  Index
+   ID | * (block pointer) 
+   main idea: get customer ID follow pointer to tuple. 
+   go from Log(n) to Log(m) 
+   don't represent every single value
+   mysql does this automatically
+
+ Ex Clustering (sparse)
+   Organize by CustomerID
+    Index
+     City | * (pointer to tuple)
+
+ Ex Secondary (Dense) index
+   Built on customer Name
+   Name | * (block pointer) 
+   if > 1 block that contains name, block pointer points to inderection layer (all block that have thing)
+   ** don't always improve performance ** 
+
+*********************************************************************
+*to explain query (get execution plan/time) use SQL keyword "explain" prior to query begin.
+*********************************************************************
+
+create index on master(birthstate) /* in different query, then use the explain query to see if it improved)

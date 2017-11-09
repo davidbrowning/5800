@@ -1,0 +1,8 @@
+﻿/* number of teams that won more than me
+
+select * from teams a, teams b where a > b
+
+*/
+select a."teamID", count (*) as rank
+from teams a, teams b where a."W" > b."W"
+ group by a."teamID" 

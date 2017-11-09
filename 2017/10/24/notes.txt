@@ -1,0 +1,89 @@
+Triggers
+ ECA rule
+ General Integreity Constraint
+
+Wait for event:
+ Event is before or after (insert, delete, update)
+ Trigger wakes up, evaluates some condition (T/F) as to 
+  whether or not to fire. 
+ Action: body of code that fires off in response to a trigger. 
+
+People 
+  Name | City
+  ------------
+   Joe | Logan
+   Sue | Logan
+
+Population
+  City | Count
+  -----------
+   SLC | 1
+ Logan | 2
+
+Ideally: update population table when people is updated. e.g. recompute. 
+
+CREATE TRIGGER popTrig ON people 
+ AFTER INSERTION ON people
+ BEGIN  
+  DELETE FROM population WHERE true;
+  INSERT INTO population VALUES (SELECT city, COUNT(*) FROM people 
+   GROUP BY city)
+ END 
+
+ could add after deletion/insertion etc. two kind of triggers (table level AFTER, row level BEFORE) 
+ table level: only see entire table
+ row level: can see new buffer -- added -- and old buffer -- deleted --
+  can refer to old and new directly
+
+UPDATE population SET COUNT:=COUNT -1
+ WHERE :OLD.city = city;
+
+UPDATE population SET COUNT:=COUNT +1
+ WHERE :NEW.city = city;
+
+=============================================end of sql================================================
+
+Physical creation of databases
+
+The problem: 
+ Relations are stored as bits
+ Functionality requirements
+  sequentially process tubles
+  search for tuples that meet some value-based condition
+  insert and delet tuples
+
+ Performance objectives
+  Achieve a high packing density (little wasted space)
+  Achieve fast response time
+  Support a high volume of transactions
+
+Outline
+ File organization
+ Primary file organization
+  HEAP 
+  sequential
+
+--------------------------------------------
+\                                           \
+ ---------------------------------------------
+
+DB is usually a collection of files. Sequence of fields. 
+
+Disk Layout: How big to make the blocks. must have room to grow. 
+ don't want to fill block entirely. spanning tuples/records span multiple blocks. 
+ DBMS needs memory management systems. MRU is better than LRU for DBMS. 
+ Pages. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
